@@ -1,9 +1,16 @@
 <script setup lang="ts">
-import TheWelcome from '../components/TheWelcome.vue'
+import Room from "../components/Room.vue"
+import Bar from "../components/Bar.vue"
+import Info from "../components/Info.vue"
 </script>
 
 <template>
   <main>
-    <TheWelcome />
+    <Bar />
+    <Info />
+    <Room />
   </main>
 </template>
+
+<style>
+</style>

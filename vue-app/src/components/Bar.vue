@@ -1,7 +1,7 @@
 <template>
-    <div>
+    <center>
         <h1>Calculadora de tinta</h1>
-    </div>
+    </center>
 </template>
 
 <script lang="ts">
@@ -9,8 +9,10 @@ export default {}
 </script>
 
 <style scoped>
+
 h1 {
-    text-align: center;
-    background-color: rgb(204, 115, 255);
+    background: linear-gradient(90deg, #616FFF 0%, #B4BDEF 100%);
+    border-radius: 0px 0px 20px 20px;
+    color: white;
 }
 </style>

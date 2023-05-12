@@ -1,9 +1,11 @@
 <script setup lang="ts">
-import Room from "./components/Room.vue"
-import Bar from "./components/Bar.vue"
+import HomeView from "./views/HomeView.vue"
 </script>
 
 <template>
-  <Bar />
-  <Room />
+  <HomeView />
 </template>
+
+<script lang="ts">
+  export default {}
+</script>

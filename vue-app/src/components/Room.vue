@@ -1,64 +1,65 @@
 <template>
     <div id="room" class="float-container">
         <div class="float-child">
-            <h3>PAREDE 1</h3>
-            <div>
+            <h2>PAREDE 1</h2>
+            <div class="wall-data">
                 <label for="width">Largura (em metros): </label>
-                <input v-model="walls.wall1.width" ref="width" type="number" step="0.5" min="0" default="0" size="5" required><br>
+                <input v-model="walls.wall1.width" type="number" step="0.5" min="0" default="0" onfocus="this.value=''" placeholder="0" size="5" required><br>
                 <label for="height">Altura (em metros): </label>
-                <input v-model="walls.wall1.height" type="number" step="0.5" min="0" default="0" size="5" required><br>
+                <input v-model="walls.wall1.height" type="number" step="0.5" min="0" default="0" onfocus="this.value=''" placeholder="0" size="5" required><br>
                 <label for="door">Número de portas: </label>
-                <input v-model="walls.wall1.doors" type="number" step="1" min="0" default="0" size="5" required><br>
+                <input v-model="walls.wall1.doors" type="number" step="1" min="0" default="0" onfocus="this.value=''" placeholder="0" size="5" required><br>
                 <label for="window">Número de janelas: </label>
-                <input v-model="walls.wall1.windows" type="number" step="1" min="0" default="0" size="5" required><br>
+                <input v-model="walls.wall1.windows" type="number" step="1" min="0" default="0" onfocus="this.value=''" placeholder="0" size="5" required><br>
             </div>
         </div>
         <div class="float-child">
-            <h3>PAREDE 2</h3>
-            <div>
+            <h2>PAREDE 2</h2>
+            <div class="wall-data">
                 <label for="width">Largura (em metros): </label>
-                <input v-model="walls.wall2.width" ref="width" type="number" step="0.5" min="0" default="0" size="5" required><br>
+                <input v-model="walls.wall2.width" type="number" step="0.5" min="0" default="0" onfocus="this.value=''" placeholder="0" size="5" required><br>
                 <label for="height">Altura (em metros): </label>
-                <input v-model="walls.wall2.height" type="number" step="0.5" min="0" default="0" size="5" required><br>
+                <input v-model="walls.wall2.height" type="number" step="0.5" min="0" default="0" onfocus="this.value=''" placeholder="0" size="5" required><br>
                 <label for="door">Número de portas: </label>
-                <input v-model="walls.wall2.doors" type="number" step="1" min="0" default="0" size="5" required><br>
+                <input v-model="walls.wall2.doors" type="number" step="1" min="0" default="0" onfocus="this.value=''" placeholder="0" size="5" required><br>
                 <label for="window">Número de janelas: </label>
-                <input v-model="walls.wall2.windows" type="number" step="1" min="0" default="0" size="5" required><br>
+                <input v-model="walls.wall2.windows" type="number" step="1" min="0" default="0" onfocus="this.value=''" placeholder="0" size="5" required><br>
             </div>
         </div>
         <div class="float-child">
-            <h3>PAREDE 3</h3>
-            <div>
+            <h2>PAREDE 3</h2>
+            <div class="wall-data">
                 <label for="width">Largura (em metros): </label>
-                <input v-model="walls.wall3.width" ref="width" type="number" step="0.5" min="0" default="0" size="5" required><br>
+                <input v-model="walls.wall3.width" type="number" step="0.5" min="0" default="0" onfocus="this.value=''" placeholder="0" size="5" required><br>
                 <label for="height">Altura (em metros): </label>
-                <input v-model="walls.wall3.height" type="number" step="0.5" min="0" default="0" size="5" required><br>
+                <input v-model="walls.wall3.height" type="number" step="0.5" min="0" default="0" onfocus="this.value=''" placeholder="0" size="5" required><br>
                 <label for="door">Número de portas: </label>
-                <input v-model="walls.wall3.doors" type="number" step="1" min="0" default="0" size="5" required><br>
+                <input v-model="walls.wall3.doors" type="number" step="1" min="0" default="0" onfocus="this.value=''" placeholder="0" size="5" required><br>
                 <label for="window">Número de janelas: </label>
-                <input v-model="walls.wall3.windows" type="number" step="1" min="0" default="0" size="5" required><br>
+                <input v-model="walls.wall3.windows" type="number" step="1" min="0" default="0" onfocus="this.value=''" placeholder="0" size="5" required><br>
             </div>
         </div>
         <div class="float-child">
-            <h3>PAREDE 4</h3>
-            <div>
+            <h2>PAREDE 4</h2>
+            <div class="wall-data">
                 <label for="width">Largura (em metros): </label>
-                <input v-model="walls.wall4.width" ref="width" type="number" step="0.5" min="0" default="0" size="5" required><br>
+                <input v-model="walls.wall4.width" type="number" step="0.5" min="0" default="0" onfocus="this.value=''" placeholder="0" size="5" required><br>
                 <label for="height">Altura (em metros): </label>
-                <input v-model="walls.wall4.height" type="number" step="0.5" min="0" default="0" size="5" required><br>
+                <input v-model="walls.wall4.height" type="number" step="0.5" min="0" default="0" onfocus="this.value=''" placeholder="0" size="5" required><br>
                 <label for="door">Número de portas: </label>
-                <input v-model="walls.wall4.doors" type="number" step="1" min="0" default="0" size="5" required><br>
+                <input v-model="walls.wall4.doors" type="number" step="1" min="0" default="0" onfocus="this.value=''" placeholder="0" size="5" required><br>
                 <label for="window">Número de janelas: </label>
-                <input v-model="walls.wall4.windows" type="number" step="1" min="0" default="0" size="5" required><br>
+                <input v-model="walls.wall4.windows" type="number" step="1" min="0" default="0" onfocus="this.value=''" placeholder="0" size="5" required><br>
             </div>
         </div>
-        <button @click="submit">Calcular</button>
-    </div>
-    <div>
-        Dados: {{ walls }}
-    </div><br>
-    <div>
-        Response: {{ response }}
+            <button class="button" @click="submit">Calcular</button>
+        <br>
+        <div v-if="response.paintArea">
+            <Paint :paintArea="response.paintArea" :litersNeeded="response.litersNeeded" :paintCans="response.paintCans" />
+        </div>
+        <div v-else-if="response.errors">
+            <Errors :errorMessages="response.errorMessages" />
+        </div>
     </div>
 </template>
 
@@ -73,8 +74,9 @@
 </template>-->
 
 <script lang="ts">
-import Wall from "./Wall.vue"
 import axios from "axios"
+import Paint from "./Paint.vue"
+import Errors from "./Errors.vue"
 
 const ENDPOINT = import.meta.env.VITE_API_ENDPOINT
 
@@ -86,56 +88,94 @@ export default {
                     width: 0,
                     height: 0,
                     doors: 0,
-                    windows: 0
+                    windows: 0,
                 },
                 wall2: {
                     width: 0,
                     height: 0,
                     doors: 0,
-                    windows: 0
+                    windows: 0,
                 },
                 wall3: {
                     width: 0,
                     height: 0,
                     doors: 0,
-                    windows: 0
+                    windows: 0,
                 },
                 wall4: {
                     width: 0,
                     height: 0,
                     doors: 0,
-                    windows: 0
+                    windows: 0,
                 },
             },
-            response: {}
+            response: {
+                errors: 0,
+                errorMessages: 0,
+                paintArea: 0,
+                litersNeeded: 0,
+                paintCans: 0,
+            },
         }
     },
     methods: {
-        submit() {
-            console.log(JSON.stringify(this.walls))
-            axios
-                .post(ENDPOINT + "/paintTest", this.walls)
-                .then(response => this.response = response.data)
+        async submit() {
+            try {
+                await axios
+                    .post(ENDPOINT + "/paintWalls", this.walls)
+                    .then(response => this.response = response.data)
+                console.log(this.response)
+            } catch (error) {
+                console.log("Erro: " + error)
+            }
         }
     },
     components: {
-        Wall
-    }
+        Paint,
+        Errors,
+    },
 }
 </script>
 
 <style scoped>
 .float-container {
-    border: 3px solid #fff;
     padding: 10px;
     width: 100%;
 }
 
 .float-child {
-    width: 25%;
+    align-items: center;
+    border: 1px solid black;
+    background-color: white;
+    border-radius: 20px;
     float: left;
     padding: 10px;
-    align-items: center;
+    width: 25%;
+}
+
+.wall-data {
+    text-align: center;
+}
+
+.button {
+    background: linear-gradient(90deg, #616FFF 0%, #B4BDEF 100%);
+    border: 1px solid black;
+    border-radius: 20px;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    display: inline-block;
+    margin: 20px;
+    font-size: 18px;
+    left: 45%;
+}
+
+.button:hover {
+    filter: brightness(80%);
+}
+
+.button:active {
+    filter: brightness(60%);
 }
 
 input[type='number'] {
@@ -145,5 +185,10 @@ input[type='number'] {
 label{
     display: inline-block;
     width: 200px;
+}
+
+h2 {
+    text-align: center;
+    text-decoration: underline;
 }
 </style>
