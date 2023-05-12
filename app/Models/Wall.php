@@ -21,9 +21,9 @@ class Wall extends Model
         parent::__construct($attributes);
     }
 
-    public function wallValidations(array $wall): array
+    public function wallValidations(string $key, array $wall): array
     {
-        $wallArea = $this->getWallArea($wall['height'], $wall['witdh']);
+        $wallArea = $this->getWallArea($wall['height'], $wall['width']);
         $nonWallArea = $this->getNonWallArea($wall['doors'], $wall['windows']);
 
         $this->validateWallArea($wallArea);
@@ -35,7 +35,7 @@ class Wall extends Model
 
     public function wallArea(array $wall): float
     {
-        $wallArea = $this->getWallArea($wall['height'], $wall['witdh']);
+        $wallArea = $this->getWallArea($wall['height'], $wall['width']);
         $nonWallArea = $this->getNonWallArea($wall['doors'], $wall['windows']);
 
         return $this->getPaintArea($wallArea, $nonWallArea);

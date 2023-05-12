@@ -38,6 +38,6 @@ class PaintCan extends Model
 
     public function getLitersNeeded($area): float
     {
-        return $area / $this->metersPerLiter;
+        return round($area / $this->metersPerLiter, 2);
     }
 }
