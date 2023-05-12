@@ -9,8 +9,8 @@ class Window extends Model
 {
     use HasFactory;
 
-    private static float $height = 1.2; // In meters
-    private static float $width = 2.0; // In meters
+    private float $height = 1.2; // In meters
+    private float $width = 2.0; // In meters
 
     public function getHeight(): float
     {

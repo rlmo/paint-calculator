@@ -9,8 +9,8 @@ class Door extends Model
 {
     use HasFactory;
 
-    private static float $height = 1.9; // In meters
-    private static float $width = 0.8; // In meters
+    private float $height = 1.9; // In meters
+    private float $width = 0.8; // In meters
 
     public function getHeight(): float
     {

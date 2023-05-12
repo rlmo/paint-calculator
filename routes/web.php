@@ -19,6 +19,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/test', [TestController::class, 'index']);
-
-Route::get('/room', [RoomController::class, 'test']);
+Route::get('/paint', [RoomController::class, 'paintWalls']);

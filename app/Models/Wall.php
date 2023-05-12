@@ -11,38 +11,70 @@ class Wall extends Model
 {
     use HasFactory;
 
-    private static float $minWallArea = 1; // In square meters
-    private static float $maxWallArea = 50; // In square meters
-    private static float $minHeightWall = 0.3; // Minimun extra height of wall with doors in meters
-    public array $invalidWallMsg = [];
+    private float $minWallArea = 1; // In square meters
+    private float $maxWallArea = 50; // In square meters
+    private float $minHeightWall = 0.3; // Minimun extra height of wall with doors in meters
+    public array $validationErros = [];
 
-    public function wallValidations(float $height, float $witdh, int $doors, int $windows): array
+    public function __construct(array $attributes = array())
     {
-        $this->validateWallArea($height, $witdh);
-        $doors > 0 && $this->validateDoorWall($height);
-        $doors > 0 || $windows > 0 && $this->validateNonWallArea($height, $witdh, $doors, $windows);
-
-        return $this->invalidWallMsg;
+        parent::__construct($attributes);
     }
 
-    public function validateWallArea(float $height, float $witdh)
+    public function wallValidations(array $wall): array
     {
-        if(($height * $witdh) < $this->minWallArea || ($height * $witdh) > $this->maxWallArea)
-            array_push($this->invalidWallMsg, "Área da parede deve ter no mínimo 1 metro quadrado e no máximo 50.");
+        $wallArea = $this->getWallArea($wall['height'], $wall['witdh']);
+        $nonWallArea = $this->getNonWallArea($wall['doors'], $wall['windows']);
+
+        $this->validateWallArea($wallArea);
+        $wall['doors'] > 0 && $this->validateDoorWall($wall['height']);
+        ($wall['doors'] > 0 || $wall['windows'] > 0) && $this->validateNonWallArea($wallArea, $nonWallArea);
+
+        return $this->validationErros;
     }
 
-    public function validateDoorWall(float $height)
+    public function wallArea(array $wall): float
     {
-        if($height < $this->minHeightWall + Door::getHeight())
-            array_push($this->invalidWallMsg, "A altura de paredes com porta deve ser, no mínimo, {$this->minHeightWall} metros maior que a altura da porta"); 
+        $wallArea = $this->getWallArea($wall['height'], $wall['witdh']);
+        $nonWallArea = $this->getNonWallArea($wall['doors'], $wall['windows']);
+
+        return $this->getPaintArea($wallArea, $nonWallArea);
     }
 
-    public function validateNonWallArea(float $height, float $witdh, int $doors, int $windows)
+    private function validateWallArea(float $area)
     {
-        $doorsArea = Door::getArea($doors);
-        $windowsArea = Window::getArea($windows);
-
-        if($doorsArea + $windowsArea > $height * $witdh / 2)
-            array_push($this->invalidWallMsg, "O total de área das portas e janelas deve ser no máximo 50% da área de parede");
+        if($area < $this->minWallArea || $area > $this->maxWallArea)
+            array_push($this->validationErros, "Área da parede deve ter no mínimo 1 metro quadrado e no máximo 50.");
     }
+
+    private function validateDoorWall(float $height)
+    {
+        if($height < $this->minHeightWall + (new Door)->getHeight())
+            array_push($this->validationErros, "A altura de paredes com porta deve ser, no mínimo, {$this->minHeightWall} metros maior que a altura da porta"); 
+    }
+
+    private function validateNonWallArea(float $wallArea, float $nonWallArea)
+    {
+        if($nonWallArea > $wallArea / 2)
+            array_push($this->validationErros, "O total de área das portas e janelas deve ser no máximo 50% da área de parede");
+    }
+
+    private function getWallArea(float $height, float $witdh): float
+    {
+        return  $height * $witdh;
+    }
+
+    private function getNonWallArea(int $doors, int $windows): float
+    {
+        $doorsArea = (new Door)->getArea($doors);
+        $windowsArea = (new Window)->getArea($windows);
+
+        return $doorsArea + $windowsArea;
+    }
+
+    private function getPaintArea(float $wallArea, float $nonWallArea): float
+    {
+        return $wallArea - $nonWallArea;
+    }
+
 }
