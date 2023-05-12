@@ -13,12 +13,21 @@ class RoomController extends Controller
         {
             $paintArea = 0;
             $walls = $request->all();
+            $counter = 0;
     
             foreach($walls as $key => $wall)
             {
+                $counter++;
                 $validationErrors = (new Wall)->wallValidations($key, $wall);
-                if(!empty($validationErrors))
-                    return json_encode($validationErrors, JSON_UNESCAPED_UNICODE);
+                if($validationErrors["errors"])
+                {
+                    foreach($validationErrors["errorMessages"] as &$message)
+                    {
+                        $message = "Parede {$counter}: " . $message;
+                    }
+                    return response(json_encode($validationErrors, JSON_UNESCAPED_UNICODE))
+                            ->header('Content-Type', 'application/json');
+                }
     
                 $wallArea = (new Wall)->wallArea($wall);
                 $paintArea += $wallArea;

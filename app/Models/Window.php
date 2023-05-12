@@ -26,10 +26,4 @@ class Window extends Model
     {
         return $quantity * $this->height * $this->width;
     }
-
-    public function calculateAllWindowsArea(int $windows): float
-    {
-        $totalArea = $windows * $this->height * $this->width;
-        return $totalArea;
-    }
 }

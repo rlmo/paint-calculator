@@ -26,10 +26,4 @@ class Door extends Model
     {
         return $quantity * $this->height * $this->width;
     }
-
-    public function calculateAllDoorsArea(int $doors): float
-    {
-        $totalArea = $doors * $this->height * $this->width;
-        return $totalArea;
-    }
 }

@@ -14,4 +14,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('/paintTest', [RoomController::class, 'paintWalls']);
+Route::post('/paintWalls', [RoomController::class, 'paintWalls']);
