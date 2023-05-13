@@ -54,7 +54,7 @@
         </div>
             <button class="button" @click="submit">Calcular</button>
         <br>
-        <div v-if="response.paintArea">
+        <div v-if="response.paintArea && !response.errors">
             <Paint :paintArea="response.paintArea" :litersNeeded="response.litersNeeded" :paintCans="response.paintCans" />
         </div>
         <div v-else-if="response.errors">
@@ -110,8 +110,8 @@ export default {
                 },
             },
             response: {
-                errors: 0,
-                errorMessages: 0,
+                errors: false,
+                errorMessages: [],
                 paintArea: 0,
                 litersNeeded: 0,
                 paintCans: 0,
@@ -124,9 +124,20 @@ export default {
                 await axios
                     .post(ENDPOINT + "/paintWalls", this.walls)
                     .then(response => this.response = response.data)
-                console.log(this.response)
             } catch (error) {
-                console.log("Erro: " + error)
+                if(error.response.data[0]) {
+                    this.response.errorMessages =[]
+                    this.response.errors = true
+                    error.response.data.shift()
+                    error.response.data.forEach(errorMessage => {
+                        if(errorMessage.errors) {
+                            this.response.errorMessages.push(errorMessage.errorMessages[0])
+                            console.log(errorMessage)
+                        }
+                    })
+                } else {
+                    console.log("Erro: " + error)
+                }
             }
         }
     },
@@ -171,7 +182,7 @@ export default {
 }
 
 .button:hover {
-    filter: brightness(80%);
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 5px 5px rgba(0,0,0,0.22);
 }
 
 .button:active {

@@ -39,4 +39,15 @@ class PaintCan extends Model
     {
         return round($area / $this->metersPerLiter, 2);
     }
+
+    public function getInfo(): array
+    {
+        $sizes = $this->sizes;
+        $metersPerLiter = $this->metersPerLiter;
+
+        return [
+            "sizes" => $sizes,
+            "metersPerLiter" => $this->metersPerLiter,
+        ];
+    }
 }

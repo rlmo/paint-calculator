@@ -14,25 +14,32 @@ class RoomController extends Controller
             $paintArea = 0;
             $walls = $request->all();
             $counter = 0;
+            $errors =[];
     
-            foreach($walls as $key => $wall)
+            foreach($walls as $wall)
             {
                 $counter++;
-                $validationErrors = (new Wall)->wallValidations($key, $wall);
+                $validationErrors = (new Wall)->wallValidations($wall);
                 if($validationErrors["errors"])
                 {
+                    $errors[0] = true;
                     foreach($validationErrors["errorMessages"] as &$message)
                     {
                         $message = "Parede {$counter}: " . $message;
                     }
-                    return response(json_encode($validationErrors, JSON_UNESCAPED_UNICODE))
-                            ->header('Content-Type', 'application/json');
                 }
     
+                array_push($errors, $validationErrors);
                 $wallArea = (new Wall)->wallArea($wall);
                 $paintArea += $wallArea;
             }
-    
+
+            if(is_bool($errors[0]))
+            {
+                return response(json_encode($errors, JSON_UNESCAPED_UNICODE), 400)
+                    ->header('Content-Type', 'application/json');
+                exit;
+            }
             $litersNeeded = (new PaintCan)->getLitersNeeded($paintArea);
             $paintCans = (new PaintCan)->paintCansNeeded($paintArea);
     
@@ -42,7 +49,7 @@ class RoomController extends Controller
                 "paintCans" => $paintCans,
             ];
     
-            return response(json_encode($data, JSON_UNESCAPED_UNICODE))
+            return response(json_encode($data, JSON_UNESCAPED_UNICODE), 200)
                     ->header('Content-Type', 'application/json');
         }
 }

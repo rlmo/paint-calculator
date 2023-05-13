@@ -4,9 +4,9 @@
             Resultados:
         </h3>
         <div v-if="paintArea">
-            Área a ser pintada: {{ paintArea }}m&sup2;<br>
-            Total de tinta: {{ litersNeeded }}L<br>
-            Latas de tinta: {{ createCansMsg() }}
+            <p>Área a ser pintada: {{ paintArea }}m&sup2;</p>
+            <p>Total de tinta: {{ litersNeeded }}L</p>
+            <p>Latas de tinta: {{ createCansMsg() }}</p>
         </div>
     </center>
 </template>

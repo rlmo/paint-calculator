@@ -14,6 +14,8 @@ class Wall extends Model
     private float $minWallArea = 1; // In square meters
     private float $maxWallArea = 50; // In square meters
     private float $minHeightWall = 0.3; // Minimun extra height of wall with doors in meters
+    private float $maxNonWallRatio = 0.5;
+    private array $rules = [];
     public array $validationErrors = [
         "errors" => 0,
         "errorMessages" => []
@@ -24,7 +26,29 @@ class Wall extends Model
         parent::__construct($attributes);
     }
 
-    public function wallValidations(string $key, array $wall): array
+    public function getRules()
+    {
+        $this->setRules();
+        return $this->rules;
+    }
+
+    private function setRules()
+    {
+        $rule1 = [ // Todo: set rules from db
+            "name" => "Área mínima e máxima da parede",
+            "description" => "Uma parede não pode ter menos de {$this->minWallArea} metro quadrado nem mais de {$this->maxWallArea} metros qudrados.",
+            "rule" => "wall.height * wall.width >= {$this->minWallArea} && wall.height * wall.width <= {$this->maxWallArea}",
+        ]; 
+        !empty($rule1) && array_push($this->rules, $rule1);
+        $rule2 = [ // Todo: set rules from db
+            "name" => "Área máxima de portas e janelas",
+            "description" => "O total de área de portas e janelas deve ser no máximo " . $this->maxNonWallRatio * 100 . "% da área da parede.",
+            "rule" => "doors.area + windows.area <= wall.area * {$this->maxNonWallArea}",
+        ]; 
+        !empty($rule2) && array_push($this->rules, $rule2);
+    }
+
+    public function wallValidations(array $wall): array
     {
         $wallArea = $this->getWallArea($wall['height'], $wall['width']);
         $nonWallArea = $this->getNonWallArea($wall['doors'], $wall['windows']);
@@ -57,16 +81,16 @@ class Wall extends Model
     {
         if($height < $this->minHeightWall + (new Door)->getHeight())
         {
-            $this->validationErrors["errors"]++ &&
+            $this->validationErrors["errors"]++;
             array_push($this->validationErrors["errorMessages"], "A altura de paredes com porta deve ser, no mínimo, {$this->minHeightWall} metros maior que a altura da porta."); 
         }
     }
 
     private function validateNonWallArea(float $wallArea, float $nonWallArea)
     {
-        if($nonWallArea > $wallArea / 2)
+        if($nonWallArea > $wallArea * $this->maxNonWallRatio)
         {
-            $this->validationErrors["errors"]++ &&
+            $this->validationErrors["errors"]++;
             array_push($this->validationErrors["errorMessages"], "O total de área das portas e janelas deve ser no máximo 50% da área de parede.");
         }
     }

@@ -2,6 +2,7 @@
 import Room from "../components/Room.vue"
 import Bar from "../components/Bar.vue"
 import Info from "../components/Info.vue"
+import Form from "../components/Form.vue"
 </script>
 
 <template>
@@ -9,6 +10,7 @@ import Info from "../components/Info.vue"
     <Bar />
     <Info />
     <Room />
+    <!-- <Form /> -->
   </main>
 </template>
 
