@@ -9,4 +9,8 @@ RUN ln -s public html
 RUN apt update; \
     apt install vim -y;
 
+RUN cp .env.example .env
+RUN composer install
+RUN php artisan key:generate
+
 EXPOSE 8000
