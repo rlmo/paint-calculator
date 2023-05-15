@@ -23,7 +23,8 @@ services:
       - 9000:9000
     volumes:
       - ./vue-app:/home/node/app
-    tty: true
+    networks:
+      - paint-calculator
 
 networks:
   paint-calculator:

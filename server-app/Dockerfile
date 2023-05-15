@@ -6,11 +6,11 @@ COPY nginx.conf /etc/nginx/conf.d/default.conf
 WORKDIR /usr/share/nginx/html
 
 RUN ln -s public html
-RUN apt update; \
-    apt install vim -y;
+RUN apt update;
 
-RUN cp .env.example .env
-RUN composer install
-RUN php artisan key:generate
+CMD cp .env.example .env; \
+    composer install; \
+    php artisan key:generate; \
+    /start.sh
 
 EXPOSE 8000

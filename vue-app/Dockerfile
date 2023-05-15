@@ -4,6 +4,9 @@ COPY ./ /home/node/app
 
 WORKDIR /home/node/app
 
-RUN chmod -R 775 install-dependencies.sh
+CMD npm i; \
+    npm i -g vite; \
+    npm i -g postcss-nesting; \
+    vite;
 
 EXPOSE 9000
