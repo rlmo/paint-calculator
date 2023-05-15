@@ -31,7 +31,7 @@
                     this.paintCansMsg += this.paintCans[key] + " lata(s) de " + key + "L, " :
                     '';
                 }
-                this.paintCansMsg = this.paintCansMsg.slice(0, -2)
+                this.paintCansMsg = this.paintCansMsg.slice(0, -2).replaceAll(".", ",")
                 
                 return this.paintCansMsg
             }

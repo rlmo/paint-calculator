@@ -1,0 +1,30 @@
+version: "3.9"
+services:
+  paint-calculator-server-app:
+    build:
+      context: ./server-app
+    container_name: paint-calculator-server-app
+    working_dir: /usr/share/nginx/html
+    ports:
+      - 8000:8000
+    volumes:
+      - ./server-app:/usr/share/nginx/html
+    restart: always
+    networks:
+      - paint-calculator
+
+  paint-calculator-vue-app:
+    build:
+      context: ./vue-app
+    image: node:alpine
+    container_name: paint-calculator-vue-app
+    working_dir: /home/node/app
+    ports:
+      - 9000:9000
+    volumes:
+      - ./vue-app:/home/node/app
+    tty: true
+
+networks:
+  paint-calculator:
+    driver: bridge

@@ -112,9 +112,9 @@ export default {
             response: {
                 errors: false,
                 errorMessages: [],
-                paintArea: 0,
-                litersNeeded: 0,
-                paintCans: 0,
+                paintArea: '',
+                litersNeeded: '',
+                paintCans: '',
             },
         }
     },
@@ -124,6 +124,10 @@ export default {
                 await axios
                     .post(ENDPOINT + "/paintWalls", this.walls)
                     .then(response => this.response = response.data)
+                    console.log(this.response.litersNeeded)
+                
+                this.response.paintArea = this.response.paintArea.toString().replaceAll(".", ",")
+                this.response.litersNeeded = this.response.litersNeeded.toString().replaceAll(".", ",")
             } catch (error) {
                 if(error.response.data[0]) {
                     this.response.errorMessages =[]
