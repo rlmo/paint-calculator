@@ -23,6 +23,7 @@ class RoomController extends Controller
                 if($validationErrors["errors"])
                 {
                     $errors[0] = true;
+                    $validationErrors["wallNumber"] = $counter;
                     foreach($validationErrors["errorMessages"] as &$message)
                     {
                         $message = "Parede {$counter}: " . $message;

@@ -2,15 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Door;
 use App\Models\Window;
 
 class Wall extends Model
 {
-    use HasFactory;
-
     private float $minWallArea = 1; // In square meters
     private float $maxWallArea = 50; // In square meters
     private float $minHeightWall = 0.3; // Minimun extra height of wall with doors in meters

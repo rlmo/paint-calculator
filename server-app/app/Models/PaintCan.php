@@ -2,13 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class PaintCan extends Model
 {
-    use HasFactory;
-
     private array $sizes = [0.5, 2.5, 3.6, 18.0]; // In liters
     private float $metersPerLiter = 5;
 

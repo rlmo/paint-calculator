@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\RoomController;
 use Illuminate\Support\Facades\Route;
 
 /*

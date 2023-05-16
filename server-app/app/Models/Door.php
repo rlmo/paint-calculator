@@ -2,13 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Door extends Model
 {
-    use HasFactory;
-
     private float $height = 1.9; // In meters
     private float $width = 0.8; // In meters
     private float $minExtraHeight = 0.3;
