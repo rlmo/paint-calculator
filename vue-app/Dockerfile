@@ -1,5 +1,7 @@
 FROM node:19-alpine
 
+COPY install-dependencies.sh /home/node/app
+
 WORKDIR /home/node/app
 
 RUN chmod 777 ./install-dependencies.sh 
