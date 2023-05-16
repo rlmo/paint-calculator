@@ -39,68 +39,70 @@ POST /api/paintWalls payload example:
 
 ```json
 {
-    "1": {
-        "height": "3",
-        "width": "12",
-        "doors": "0",
-        "windows": "0"
-    },
-    "2": {
-        "height": "3",
-        "width": "15",
-        "doors": "0",
-        "windows": "1"
-    },
-    "3": {
-        "height": "3",
-        "width": "12",
-        "doors": "1",
-        "windows": "0"
-    },
-    "4": {
-        "height": "3",
-        "width": "15",
-        "doors": "1",
-        "windows": "1"
-    }
+    "1": {
+        "height": "3",
+        "width": "12",
+        "doors": "0",
+        "windows": "0"
+    },
+    "2": {
+        "height": "3",
+        "width": "15",
+        "doors": "0",
+        "windows": "1"
+    },
+    "3": {
+        "height": "3",
+        "width": "12",
+        "doors": "1",
+        "windows": "0"
+    },
+    "4": {
+        "height": "3",
+        "width": "15",
+        "doors": "1",
+        "windows": "1"
+    }
 }
 ```
 
 Successful example response:
 ```json
 {
-    "paintArea": 154.15999999999997,
-    "litersNeeded": 30.83,
-    "paintCans": {
-        "18": 1,
-        "3.6": 3,
-        "2.5": 0,
-        "0.5": 5
-    }
+    "paintArea": 154.15999999999997,
+    "litersNeeded": 30.83,
+    "paintCans": {
+        "18": 1,
+        "3.6": 3,
+        "2.5": 0,
+        "0.5": 5
+    }
 }
 ```
 
 Error example response:
 ```json
 [
-    {
-        "errors": 1,
-        "errorMessages": [
-            "Parede 2: A altura de paredes com porta deve ser, no mínimo, 0.3 metros maior que a altura da porta."
-        ]
-    },
-    {
-        "errors": 1,
-        "errorMessages": [
-            "Parede 3: Área da parede deve ter no mínimo 1 metro quadrado e no máximo 50."
-        ]
-    },
-    {
-        "errors": 2,
-        "errorMessages": [
-            "Parede 4: O total de área das portas e janelas deve ser no máximo 50% da área de parede.",
-            "Parede 4: Área da parede deve ter no mínimo 1 metro quadrado e no máximo 50."
-        ]
-    }
+    {
+        "errors": 1,
+        "errorMessages": [
+            "Parede 2: A altura de paredes com porta deve ser, no mínimo, 0.3 metros maior que a altura da porta."
+        ],
+        "wallNumber": 2
+    },
+    {
+        "errors": 1,
+        "errorMessages": [
+            "Parede 3: Área da parede deve ter no mínimo 1 metro quadrado e no máximo 50."
+        ],
+        "wallNumber": 3
+    },
+    {
+        "errors": 1,
+        "errorMessages": [
+            "Parede 4: O total de área das portas e janelas deve ser no máximo 50% da área de parede."
+        ],
+        "wallNumber": 4
+    }
 ]
 ```
