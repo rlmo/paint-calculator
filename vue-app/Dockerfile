@@ -1,12 +1,7 @@
-FROM node:alpine
-
-COPY ./ /home/node/app
+FROM node:19-alpine
 
 WORKDIR /home/node/app
 
-CMD npm i; \
-    npm i -g vite; \
-    npm i -g postcss-nesting; \
-    vite;
+RUN chmod 777 ./install-dependencies.sh 
 
 EXPOSE 9000
